@@ -1,0 +1,9 @@
+<% columns.each do |col, col_details| %>
+  <td class="border border-dark" style='width: 100px;'>
+    <% if col_details['color'] == 'red' %>
+      <div class="bg-danger rounded-circle mx-3" style='height: 70px; width: 70px;'></div>
+    <% elsif col_details['color'] == 'black' %>
+      <div class="bg-dark rounded-circle mx-3" style='height: 70px; width: 70px;'></div>
+    <% end %>
+  </td>
+<% end %>

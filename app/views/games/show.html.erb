@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Connect 4</h1>
+  <%# TODO: a better display of game status could be abstracted into a presenter %>
+  <h3>Game Status: <%= @game.status.humanize %></h3>
+  <h3><%= "Player #{@game.winner.name} won!" if @game.winner? %></h3>
+
+  <%# TODO: the better UX is to show whose turn it is %>
+  <p>Last move by: <%= @game.last_move_by %></p>
+  <p>Move count: <%= @game.moves_count %></p>
+
+  <table>
+    <thead>
+      <tr>
+        <% 7.times do |i| %>
+          <th>
+            <% if @game.in_progress? %>
+              <%= link_to 'Drop checker', game_path(@game, column: i), class: 'btn btn-primary', data: { turbo_method: "put" } %>
+            <% end %>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @game.board.to_a.reverse.each do |row_name, columns| %>
+        <tr style='height: 100px;'><%= render partial: 'row', locals: { columns: columns } %></tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to "New Game", new_game_path, class: 'btn btn-success' %>
+</div>

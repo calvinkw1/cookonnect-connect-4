@@ -1,0 +1,13 @@
+<div class="container">
+  <%= form_for @game do |f| %>
+    <%= f.fields_for :player do |player_fields| %>
+      <%= player_fields.label :red_player_name %>
+      <%= player_fields.text_field :red_player_name %>
+
+      <%= player_fields.label :black_player_name %>
+      <%= player_fields.text_field :black_player_name %>
+    <% end %>
+
+    <%= f.submit %>
+  <% end %>
+</div>
